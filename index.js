@@ -1,23 +1,15 @@
-import { readFileSync } from "fs";
-import http from "http";
+import express from "express";
 
-const home = readFileSync("./home.html");
-const about = readFileSync("./about.html");
-const contact = readFileSync("./contact.html");
-const pageNotFound = readFileSync("./pageNotFound.html");
+const app = express();
 
-const server = http.createServer((req, res) => {
-  if (req.url == "/about") {
-    res.end(about);
-  } else if (req.url == "/contact") {
-    res.end(contact);
-  } else if (req.url == "/") {
-    res.end(home);
-  } else {
-    res.end(pageNotFound);
-  }
-});
+app.get("/",(req,res)=>{
+  res.sendStatus(200)
+  res.json({
+    success:true,
+    data:["pallab","majumdar"]
+  })
+})
 
-server.listen(3000, () => {
-  console.log("server is connected");
+app.listen(3001, () => {
+  console.log("Server started");
 });
