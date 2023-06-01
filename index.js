@@ -2,12 +2,11 @@ import express from "express";
 
 const app = express();
 
+//! Setting up view engine
+app.set("view engine","ejs")
+
 app.get("/",(req,res)=>{
-  res.sendStatus(200)
-  res.json({
-    success:true,
-    data:["pallab","majumdar"]
-  })
+  res.render("index",{name:"Pallab Majumdar",age:"23"})
 })
 
 app.listen(3001, () => {
